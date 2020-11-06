@@ -1,0 +1,35 @@
+﻿@model List<VPDT.Models.NHACUNGCAP>
+
+<table style="width:100%;height:100%;" id="tblDisplay" class=" table table-bordered table-hover table-striped">
+    <thead>
+        <tr style="text-align:center">
+            <th style="width:10%">STT</th>
+            <th style="width:30%">Tên nhà cung cấp</th>
+            <th style="width:20%">Số điện thoại</th>
+            <th style="width:20%">Địa chỉ</th>
+            <th style="width:10%">Email</th>
+            <th style="width:10%">Tác vụ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            for (int i = 0; i < Model.Count; i++)
+            {
+                var item = Model[i];
+                <tr>
+                    <td style="text-align:center">@(i+1)</td>
+                    <td style="text-align:left">@item.TENNHACUNGCAP</td>
+                    <td style="text-align:center">@item.SODIENTHOAI</td>
+                    <td style="text-align:left">@item.DIACHI</td>
+                    <td style="text-align:left">@item.EMAIL</td>
+                    <td style="text-align:center;width:8%;">
+                        <a href="javascript:;" onclick="openUpdate(@item.ID)" data-toggle="tooltip" title="Cập nhập dữ liệu"><i class="fas fa-edit"></i></a>
+                        <a href="javascript:;" onclick="openDelete(@item.ID)" data-toggle="tooltip" title="Xóa dữ liệu"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+<script src="~/js/NhaCungCap/getlistNhaCungCap.js"></script>

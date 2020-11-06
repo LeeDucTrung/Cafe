@@ -20,15 +20,15 @@ namespace CAFE.CMS.Controllers
             this._domain = _config["APIDomain"].ToString();
         }
         [HttpGet("create")]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> CreateNhaCungCap()
         {
-            return PartialView("_Create");
+            return PartialView("CreateNhaCungCap");
         }
         [HttpGet("update")]
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> UpdateNhaCungCap(int id)
         {
-            var data = await HttpHelper.GetData<NHACUNGCAP>($"{_domain}/api/dm_chung_tochuc/find-by-id", $"id={id}");
-            return PartialView("_Update", data);
+            var data = await HttpHelper.GetData<NHACUNGCAP>($"{_domain}/api/nha-cung-cap/find-by-id", $"id={id}");
+            return PartialView("UpdateNhaCungCap", data);
         }
 
         [HttpPost("create-or-update")]
@@ -38,12 +38,12 @@ namespace CAFE.CMS.Controllers
             {
                 if (inputModel.ID == 0)
                 {
-                    await HttpHelper.PostData<NHACUNGCAP>(inputModel, $"{_domain}/api/dm_chung_tochuc/create");
+                    await HttpHelper.PostData<NHACUNGCAP>(inputModel, $"{_domain}/api/nha-cung-cap/create");
                     return Json(new { Result = true, Message = "Thêm mới dữ liệu thành công" });
                 }
                 else
                 {
-                    await HttpHelper.PostData<NHACUNGCAP>(inputModel, $"{_domain}/api/dm_chung_tochuc/update");
+                    await HttpHelper.PostData<NHACUNGCAP>(inputModel, $"{_domain}/api/nha-cung-cap/update");
                     return Json(new { Result = true, Message = "Cập nhật dữ liệu thành công" });
                 }
             }
@@ -54,10 +54,10 @@ namespace CAFE.CMS.Controllers
         }
 
         [HttpGet("get-list")]
-        public async Task<IActionResult> GetList(string name, string code, int status)
+        public async Task<IActionResult> GetList(string name)
         {
-            var data = await HttpHelper.GetData<List<NHACUNGCAP>>($"{_domain}/api/dm_chung_tochuc/get-list", $"name={name}&code={code}&status={status}");
-            return PartialView("_GetList", data);
+            var data = await HttpHelper.GetData<List<NHACUNGCAP>>($"{_domain}/api/nha-cung-cap/get-list", $"name={name}");
+            return PartialView("GetList", data);
         }
         [HttpGet("danh-sach")]
         public IActionResult Index()

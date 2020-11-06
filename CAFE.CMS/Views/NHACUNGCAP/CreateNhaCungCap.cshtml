@@ -1,0 +1,71 @@
+﻿<div id="frmCreate" class="form-horizontal">
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Tên nhà cung cấp </label>
+            <div class="col-sm-7">
+                <input type="text" required class="form-control" id="txtName" placeholder="Tên nhà cung cấp">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>số điện thoại nhà cung cấp </label>
+            <div class="col-sm-7">
+                <input type="number" required class="form-control" id="txtPhone" placeholder="số điện thoại nhà cung cấp">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Địa chỉ </label>
+            <div class="col-sm-7">
+                <input type="text" required class="form-control" id="txtDiaChi" placeholder="Địa chỉ nhà cung cấp" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4">Email </label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="txtEmail" placeholder="Email nhà cung cấp" />
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var frmCreate = $('#frmCreate');
+    $(document).ready(function () {
+        addRequired(frmCreate);
+    });
+    $('#modal-form').find('.modal-dialog').addClass("modal-lg")
+    $('#modal-form').find('#btnSave').off("click").on('click', function (e) {
+        e.preventDefault();
+        create();
+    });
+    function create() {
+        if (ValidateForm(frmCreate)) {
+            return;
+        }
+        showLoading();
+        $.ajax({
+            url: urlDomain + "/create-or-update",
+            method: "POST",
+            data: {
+                TENNHACUNGCAP: frmCreate.find('#txtName').val(),
+                SODIENTHOAI: frmCreate.find('#txtPhone').val(),
+                DIACHI: frmCreate.find('#txtDiaChi').val(),
+                EMAIL: frmCreate.find('#txtEmail').val()
+            }
+            , success: function (response) {
+                hideLoading()
+                if (response.result) {
+                    showAlert(response.message, 2)
+                    getData("");
+                    hideContentModal()
+                } else {
+                    showAlert(response.message)
+                }
+            }
+        });
+    }
+</script>

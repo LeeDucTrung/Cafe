@@ -1,0 +1,74 @@
+﻿@model VPDT.Models.NHACUNGCAP
+<div id="frmUpdate" class="form-horizontal">
+    <input type="hidden" id="idNhaCungCap" value="@Model.ID" />
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Tên nhà cung cấp </label>
+            <div class="col-sm-7">
+                <input type="text" required class="form-control" id="txtName" placeholder="Tên nhà cung cấp" value="@Model.TENNHACUNGCAP">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>số điện thoại nhà cung cấp </label>
+            <div class="col-sm-7">
+                <input type="number" required class="form-control" id="txtPhone" placeholder="số điện thoại nhà cung cấp" value="@Model.SODIENTHOAI">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Địa chỉ </label>
+            <div class="col-sm-7">
+                <input type="text" required class="form-control" id="txtDiaChi" placeholder="Địa chỉ nhà cung cấp" value="@Model.DIACHI" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4">Email </label>
+            <div class="col-sm-4">
+                <input type="text"  class="form-control" id="txtEmail" placeholder="Email nhà cung cấp" value="@Model.EMAIL" />
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var frmUpdate = $('#frmUpdate');
+    $(document).ready(function () {
+        addRequired(frmUpdate);
+    });
+    $('#modal-form').find('.modal-dialog').addClass("modal-lg")
+    $('#modal-form').find('#btnSave').off("click").on('click', function (e) {
+        e.preventDefault();
+        Update();
+    });
+    function Update() {
+        if (ValidateForm(frmUpdate)) {
+            return;
+        }
+        showLoading();
+        $.ajax({
+            url: urlDomain + "/create-or-update",
+            method: "POST",
+            data: {
+                ID: frmUpdate.find('#idNhaCungCap').val(),
+                TENNHACUNGCAP: frmUpdate.find('#txtName').val(),
+                SODIENTHOAI: frmUpdate.find('#txtPhone').val(),
+                DIACHI: frmUpdate.find('#txtDiaChi').val(),
+                EMAIL: frmUpdate.find('#txtEmail').val()
+            }
+            , success: function (response) {
+                hideLoading()
+                if (response.result) {
+                    showAlert(response.message, 2)
+                    getData("");
+                    hideContentModal()
+                } else {
+                    showAlert(response.message)
+                }
+            }
+        });
+    }
+</script>

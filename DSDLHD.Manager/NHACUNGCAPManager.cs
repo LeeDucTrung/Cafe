@@ -16,7 +16,7 @@ namespace VPDT.Manager
     {
         Task Create(NHACUNGCAP inputModel);
         Task Update(NHACUNGCAP inputModel);
-        Task<List<NHACUNGCAP>> Get_list(string name,int status, int pageSize, int pageNumber);
+        Task<List<NHACUNGCAP>> Get_list(string name, int pageSize, int pageNumber);
         Task<NHACUNGCAP> FindById(int id);
     }
     public class NHACUNGCAPManager : INHACUNGCAPManager
@@ -53,21 +53,13 @@ namespace VPDT.Manager
                 throw ex;
             }
         } 
-        public async Task<List<NHACUNGCAP>> Get_list(string name,int status, int pageSize, int pageNumber)
+        public async Task<List<NHACUNGCAP>> Get_list(string name, int pageSize, int pageNumber)
         {
             try
             {
                 List<NHACUNGCAP> data;
-                if (status == (int)StatusEnum.All)
-                {
-                    data = (await _unitOfWork.NHACUNGCAPRepository.FindBy(x =>((string.IsNullOrEmpty(name) || x.TENNHACUNGCAP.ToLower().Contains(name.ToLower())))
-                                                                   )
-                    ).ToList();
-                    return data;
-                }
                 data = (await _unitOfWork.NHACUNGCAPRepository.FindBy(x =>((string.IsNullOrEmpty(name) || x.TENNHACUNGCAP.ToLower().Contains(name.ToLower())))
-                                                                   )
-                ).ToList();
+                                                                   )).ToList();
                 return data;
             }
             catch (Exception ex)
@@ -80,8 +72,6 @@ namespace VPDT.Manager
         {
             return await _unitOfWork.NHACUNGCAPRepository.Get(x => x.ID == id);
         }
-        
-
     }
 
 }

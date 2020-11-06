@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DSDLHD.Models\CAFE.Models.csproj" />
     <ProjectReference Include="..\DSDLHD.Utils\CAFE.Utils.csproj" />
   </ItemGroup>

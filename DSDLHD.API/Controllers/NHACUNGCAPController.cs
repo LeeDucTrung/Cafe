@@ -19,11 +19,11 @@ namespace VPDT.API.Controllers
             this._manager = manager;
         }
         [HttpGet("get-list")]
-        public async Task<IActionResult> GetList(string name = "", int status = -1, int pageSize = 10, int pageNumber = 0)
+        public async Task<IActionResult> GetList(string name = "", int pageSize = 10, int pageNumber = 0)
         {
             try
             {
-                var data = await _manager.Get_list(name, status, pageSize, pageNumber);
+                var data = await _manager.Get_list(name, pageSize, pageNumber);
                 return Ok(data);
             }
             catch (Exception ex)
