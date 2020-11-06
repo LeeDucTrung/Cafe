@@ -22,7 +22,7 @@ namespace VPDT.DependencyInjection
             services.AddDbContext<VPDTDbContext>(ServiceLifetime.Scoped, ServiceLifetime.Singleton);
             services.AddTransient<IDbContextFactory<VPDTDbContext>, VPDTDbContextFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<ITBL_Chuc_VuManager,TBL_Chuc_VuManager>();
+            services.AddTransient<INHACUNGCAPManager, NHACUNGCAPManager>();
             
             
         }

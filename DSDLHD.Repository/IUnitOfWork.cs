@@ -12,7 +12,7 @@ namespace VPDT.Repository
     public interface IUnitOfWork : IDisposable
     {
         
-        public ITBL_Chuc_VuRepository TBL_Chuc_VuRepository { get; }
+        public INHACUNGCAPRepository NHACUNGCAPRepository { get; }
        
         Task CreateTransaction();
         void Commit();
@@ -27,13 +27,13 @@ namespace VPDT.Repository
         public UnitOfWork(IDbContextFactory<VPDTDbContext> dbContextFactory, Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor)
         {
             _dbContext = dbContextFactory.GetContext();
-            TBL_Chuc_VuRepository = new TBL_Chuc_VuRepository(_dbContext);
+            NHACUNGCAPRepository = new NHACUNGCAPRepository(_dbContext);
             
 
 
-
+            
     }
-        public ITBL_Chuc_VuRepository TBL_Chuc_VuRepository { get; }
+        public INHACUNGCAPRepository NHACUNGCAPRepository { get; }
 
        
 

@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CAFE.Repository", "DSDLHD.R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CAFE.Utils", "DSDLHD.Utils\CAFE.Utils.csproj", "{66E3AB09-E3A6-4D41-B6E8-654ADEA7673A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAFE.CMS", "CAFE.CMS\CAFE.CMS.csproj", "{2CD90203-97F4-4EF0-9CAA-9824EDFCB915}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{66E3AB09-E3A6-4D41-B6E8-654ADEA7673A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66E3AB09-E3A6-4D41-B6E8-654ADEA7673A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66E3AB09-E3A6-4D41-B6E8-654ADEA7673A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD90203-97F4-4EF0-9CAA-9824EDFCB915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD90203-97F4-4EF0-9CAA-9824EDFCB915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD90203-97F4-4EF0-9CAA-9824EDFCB915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD90203-97F4-4EF0-9CAA-9824EDFCB915}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DSDLHD.Models\CAFE.Models.csproj" />
+    <ProjectReference Include="..\DSDLHD.Utils\CAFE.Utils.csproj" />
+  </ItemGroup>
+
+</Project>
