@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>CAFE.Utils</AssemblyName>
+    <RootNamespace>CAFE.Utils</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

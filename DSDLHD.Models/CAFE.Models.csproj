@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>CAFE.Models</AssemblyName>
+    <RootNamespace>CAFE.Models</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DSDLHD.Data\VPDT.Data.csproj" />
+    <ProjectReference Include="..\DSDLHD.Data\CAFE.Data.csproj" />
   </ItemGroup>
 
 </Project>

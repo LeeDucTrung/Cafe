@@ -2,11 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>CAFE.API</AssemblyName>
+    <RootNamespace>CAFE.API</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DSDLHD.DependencyInjection\VPDT.DependencyInjection.csproj" />
-    <ProjectReference Include="..\DSDLHD.Manager\VPDT.Manager.csproj" />
+    <ProjectReference Include="..\DSDLHD.DependencyInjection\CAFE.DependencyInjection.csproj" />
+    <ProjectReference Include="..\DSDLHD.Manager\CAFE.Manager.csproj" />
   </ItemGroup>
 
   <ItemGroup>

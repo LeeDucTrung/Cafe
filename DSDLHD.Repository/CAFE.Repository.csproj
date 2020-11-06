@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>CAFE.Repository</AssemblyName>
+    <RootNamespace>CAFE.Repository</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DSDLHD.Data\CAFE.Data.csproj" />
+    <ProjectReference Include="..\DSDLHD.Models\CAFE.Models.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>CAFE.DependencyInjection</AssemblyName>
+    <RootNamespace>CAFE.DependencyInjection</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DSDLHD.Data\CAFE.Data.csproj" />
+    <ProjectReference Include="..\DSDLHD.Manager\CAFE.Manager.csproj" />
+    <ProjectReference Include="..\DSDLHD.Models\CAFE.Models.csproj" />
+    <ProjectReference Include="..\DSDLHD.Repository\CAFE.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
