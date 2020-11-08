@@ -1,0 +1,71 @@
+﻿<div id="frmCreate" class="form-horizontal">
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Chọn nhà cung cấp</label>
+            <div class="col-sm-7">
+                <select required id="listNhaCungCap" class="form-control">
+                </select>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-sm-4" required>Tổng tiền</label>
+            <div class="col-sm-7">
+                <input type="text" required class="form-control" placeholder="Tổng tiền" id="tongtien" />
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script>
+    var frmCreate = $('#frmCreate');
+    $(document).ready(function () {
+        addRequired(frmCreate);
+        getListNhaCungCap();
+    });
+    $('#modal-form').find('.modal-dialog').addClass("modal-lg")
+    $('#modal-form').find('#btnSave').off("click").on('click', function (e) {
+        e.preventDefault();
+        create();
+    });
+    function getListNhaCungCap() {
+        var listNhaCungCap = $("#frmCreate").find("#listNhaCungCap");
+        listNhaCungCap.select2();
+        $.ajax({
+            url: "/phieu-nhap" + "/get-nha-cung-cap",
+            method: "GET",
+            success: function (response) {
+                $.each(response.data, function (i, itemMenu) {
+                    if (i >= 0) {
+                        var newOption = new Option(itemMenu.title, itemMenu.value);
+                        listNhaCungCap.append(newOption);
+                    }
+                })
+            }
+        })
+    }
+    function create() {
+        if (ValidateForm(frmCreate)) {
+            return;
+        }
+        showLoading();
+        $.ajax({
+            url: "/phieu-nhap"+ "/create-or-update",
+            method: "POST",
+            data: {
+                NHACUNGCAPID: frmCreate.find('#listNhaCungCap').val(),
+                TONGTIEN: frmCreate.find('#tongtien').val()
+            }
+            , success: function (response) {
+                hideLoading()
+                if (response.result) {
+                    showAlert(response.message, 2)
+                    getDataPhieuNhap("");
+                    hideContentModal()
+                } else {
+                    showAlert(response.message)
+                }
+            }
+        });
+    }
+</script>

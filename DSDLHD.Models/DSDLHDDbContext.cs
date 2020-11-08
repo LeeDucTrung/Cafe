@@ -25,6 +25,7 @@ namespace VPDT.Models
 
         }
         public DbSet<NHACUNGCAP> TBL_Chuc_Vu { get; set; }
+        public DbSet<PHIEUNHAP> PHIEUNHAP { get; set; }
        
     }
 }

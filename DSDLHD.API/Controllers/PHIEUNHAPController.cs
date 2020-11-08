@@ -9,12 +9,12 @@ using VPDT.Models;
 
 namespace VPDT.API.Controllers
 {
-    [Route("api/nha-cung-cap")]
+    [Route("api/phieu-nhap")]
     [ApiController]
-    public class NHACUNGCAPController : ControllerBase
+    public class PHIEUNHAPController : ControllerBase
     {
-        private readonly INHACUNGCAPManager _manager;
-        public NHACUNGCAPController(INHACUNGCAPManager manager)
+        private readonly IPHIEUNHAPManager _manager;
+        public PHIEUNHAPController(IPHIEUNHAPManager manager)
         {
             this._manager = manager;
         }
@@ -45,11 +45,13 @@ namespace VPDT.API.Controllers
             }
         }
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] NHACUNGCAP inputModel)
+        public async Task<IActionResult> Create([FromBody] PHIEUNHAP inputModel)
         {
             try
             {
                 await _manager.Create(inputModel);
+                inputModel.NGAYLAP = DateTime.Now;
+                inputModel.NHANVIENID = 0;
                 return Ok(inputModel);
             }
             catch(Exception ex)
@@ -58,7 +60,7 @@ namespace VPDT.API.Controllers
             }
         }
         [HttpPost("update")]
-        public async Task<IActionResult> Update([FromBody] NHACUNGCAP inputModel)
+        public async Task<IActionResult> Update([FromBody] PHIEUNHAP inputModel)
         {
             try
             {
@@ -75,20 +77,7 @@ namespace VPDT.API.Controllers
                 return StatusCode(400,ex);
             }
         }
-        [HttpGet("look-up-nha-cung-cap")]
-        public async Task<IActionResult> LookUp()
-        {
-            try
-            {
-                var data = await _manager.Look_up();
-                return Ok(data.Select(x => new { Value = x.ID, Title = x.TENNHACUNGCAP }));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
+        
 
     }
 }

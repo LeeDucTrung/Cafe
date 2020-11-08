@@ -18,6 +18,7 @@ namespace VPDT.Manager
         Task Update(NHACUNGCAP inputModel);
         Task<List<NHACUNGCAP>> Get_list(string name, int pageSize, int pageNumber);
         Task<NHACUNGCAP> FindById(int id);
+        Task<List<NHACUNGCAP>> Look_up();
     }
     public class NHACUNGCAPManager : INHACUNGCAPManager
     {
@@ -71,6 +72,10 @@ namespace VPDT.Manager
         public async Task<NHACUNGCAP> FindById(int id)
         {
             return await _unitOfWork.NHACUNGCAPRepository.Get(x => x.ID == id);
+        }
+        public async Task<List<NHACUNGCAP>> Look_up()
+        {
+            return (await _unitOfWork.NHACUNGCAPRepository.GetAll()).ToList();
         }
     }
 

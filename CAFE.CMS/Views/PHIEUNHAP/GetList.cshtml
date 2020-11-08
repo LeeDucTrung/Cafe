@@ -1,0 +1,34 @@
+﻿@model List<VPDT.Models.PHIEUNHAP>
+
+<table style="width:100%;height:100%;" id="tblDisplay" class=" table table-bordered table-hover table-striped">
+    <thead>
+        <tr style="text-align:center">
+            <th style="width:10%">STT</th>
+            <th style="width:30%">Nhà cung cấp</th>
+            <th style="width:30%">Ngày lập</th>
+            <th style="width:10%">Tổng tiền</th>
+            <th style="width:10%">Nhân viên</th>
+            <th style="width:10%">Tác vụ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            for (int i = 0; i < Model.Count; i++)
+            {
+                var item = Model[i];
+                <tr>
+                    <td style="text-align:center">@(i+1)</td>
+                    <td style="text-align:center">@item.NHACUNGCAPNAME</td>
+                    <td style="text-align:left">@item.NGAYLAP</td>
+                    <td style="text-align:left">@item.TONGTIEN VND</td>
+                    <td style="text-align:left">@item.NHANVIENID</td>
+                    <td style="text-align:center">
+                        <a href="javascript:;" onclick="openUpdate(@item.ID)" data-toggle="tooltip" title="Cập nhập dữ liệu"><i class="fas fa-edit"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+<script src="~/js/PhieuNhap/getList.js"></script>

@@ -23,6 +23,7 @@ namespace VPDT.DependencyInjection
             services.AddTransient<IDbContextFactory<VPDTDbContext>, VPDTDbContextFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<INHACUNGCAPManager, NHACUNGCAPManager>();
+            services.AddTransient<IPHIEUNHAPManager, PHIEUNHAPManager>();
             
             
         }

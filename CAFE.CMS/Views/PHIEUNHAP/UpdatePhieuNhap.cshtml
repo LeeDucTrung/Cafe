@@ -1,0 +1,77 @@
+﻿@model VPDT.Models.PHIEUNHAP;
+
+<div id="frmUpdate" class="form-horizontal">
+    <input type="hidden" value="@Model.NHACUNGCAPID" id="idNhacungcap" />
+    <input type="hidden" value="@Model.ID" id="IDNhaCungCap" />
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Chọn nhà cung cấp</label>
+            <div class="col-sm-7">
+                <select required id="listNhaCungCap" class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4" required>Tổng tiền</label>
+            <div class="col-sm-7">
+                <input type="text" required class="form-control" placeholder="Tổng tiền" id="tongtien" value="@Model.TONGTIEN" />
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    var frmUpdate = $('#frmUpdate');
+    $(document).ready(function () {
+        addRequired(frmUpdate);
+        getListNhaCungCap();
+    });
+    $('#modal-form').find('.modal-dialog').addClass("modal-lg")
+    $('#modal-form').find('#btnSave').off("click").on('click', function (e) {
+        e.preventDefault();
+        Update();
+    });
+    function getListNhaCungCap() {
+        var listNhaCungCap = $("#frmUpdate").find("#listNhaCungCap");
+        var listNhaCungCapval = frmUpdate.find('#idNhacungcap').val();
+        listNhaCungCap.select2();
+        $.ajax({
+            url: "/phieu-nhap" + "/get-nha-cung-cap",
+            method: "GET",
+            success: function (response) {
+                $.each(response.data, function (i, itemMenu) {
+                    if (i >= 0) {
+                        var newOption = new Option(itemMenu.title, itemMenu.value);
+                        listNhaCungCap.append(newOption);
+                    }
+                    frmUpdate.find('#listNhaCungCap').val(listNhaCungCapval).trigger('change');
+                })
+            }
+        })
+    }
+    function Update() {
+        if (ValidateForm(frmUpdate)) {
+            return;
+        }
+        showLoading();
+        $.ajax({
+            url: "/phieu-nhap" + "/Create-or-update",
+            method: "POST",
+            data: {
+                ID: frmUpdate.find('#IDNhaCungCap').val(),
+                NHACUNGCAPID: frmUpdate.find('#listNhaCungCap').val(),
+                TONGTIEN: frmUpdate.find('#tongtien').val()
+            }
+            , success: function (response) {
+                hideLoading()
+                if (response.result) {
+                    showAlert(response.message, 2)
+                    getDataPhieuNhap("");
+                    hideContentModal()
+                } else {
+                    showAlert(response.message)
+                }
+            }
+        });
+    }
+</script>
