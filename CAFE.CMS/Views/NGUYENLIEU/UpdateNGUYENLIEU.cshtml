@@ -1,0 +1,33 @@
+﻿@model VPDT.Models.NGUYENLIEU
+<div id="frmUpdateNguyenLieu" class="form-horizontal">
+    <input type="hidden" value="@Model.DONVITINH" id="DONVITINH" />
+    <input type="hidden" value="@Model.ID" id="IDNguyenLieu" />
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Tên nguyên liệu</label>
+            <div class="col-sm-7">
+                <input type="text" required class="form-control" id="txtName" placeholder="Tên nguyên liệu" value="@Model.TENNGUYENLIEU">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Số lượng nguyên liệu </label>
+            <div class="col-sm-7">
+                <input type="number" required class="form-control" id="txtSL" placeholder="Số lượng nguyên liệu" value="@Model.SOLUONG">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Đơn vị</label>
+            <div class="col-sm-7">
+                <select id="listDonVi" class="form-control">
+                    <option value="Kilogram">Kilogram</option>
+                    <option value="Lít">Lít</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/NguyenLieu/update.js"></script>

@@ -1,13 +1,12 @@
-﻿@model List<VPDT.Models.PHIEUNHAP>
+﻿@model List<VPDT.Models.NGUYENLIEU>
 
 <table style="width:100%;height:100%;" id="tblDisplay" class=" table table-bordered table-hover table-striped">
     <thead>
         <tr style="text-align:center">
             <th style="width:10%">STT</th>
-            <th style="width:30%">Nhà cung cấp</th>
-            <th style="width:15%">Ngày lập</th>
-            <th style="width:25%">Tổng tiền</th>
-            <th style="width:10%">Nhân viên</th>
+            <th style="width:60%">Tên nguyên liệu</th>
+            <th style="width:10%">Số lượng</th>
+            <th style="width:10%">Đơn vị</th>
             <th style="width:10%">Tác vụ</th>
         </tr>
     </thead>
@@ -16,14 +15,11 @@
             for (int i = 0; i < Model.Count; i++)
             {
                 var item = Model[i];
-                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-                var giaTien = String.Format(culture, "{0:N0}", item.TONGTIEN);
                 <tr>
                     <td style="text-align:center">@(i+1)</td>
-                    <td style="text-align:center">@item.NHACUNGCAPNAME</td>
-                    <td style="text-align:left">@item.NGAYLAP</td>
-                    <td style="text-align:left">@giaTien VND</td>
-                    <td style="text-align:left">@item.NHANVIENID</td>
+                    <td style="text-align:left">@item.TENNGUYENLIEU</td>
+                    <td style="text-align:center">@item.SOLUONG</td>
+                    <td style="text-align:left">@item.DONVITINH</td>
                     <td style="text-align:center">
                         <a href="javascript:;" onclick="openUpdate(@item.ID)" data-toggle="tooltip" title="Cập nhập dữ liệu"><i class="fas fa-edit"></i></a>
                     </td>
@@ -33,4 +29,4 @@
 
     </tbody>
 </table>
-<script src="~/js/PhieuNhap/getList.js"></script>
+<script src="~/js/NguyenLieu/getlist.js"></script>

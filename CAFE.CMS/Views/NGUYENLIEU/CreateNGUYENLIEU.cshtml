@@ -1,0 +1,65 @@
+﻿<div id="frmCreate" class="form-horizontal">
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Tên nguyên liệu</label>
+            <div class="col-sm-7">
+                <input type="text" required class="form-control" id="txtName" placeholder="Tên nguyên liệu">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Số lượng nguyên liệu </label>
+            <div class="col-sm-7">
+                <input type="number" required class="form-control" id="txtSL" placeholder="Số lượng nguyên liệu">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Đơn vị</label>
+            <div class="col-sm-7">
+                <select id="listDonVi" class="form-control">
+                    <option value="Kilogram">Kilogram</option>
+                    <option value="Lít">Lít</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var frmCreate = $('#frmCreate');
+    $(document).ready(function () {
+        addRequired(frmCreate);
+    });
+    $('#modal-form').find('.modal-dialog').addClass("modal-lg")
+    $('#modal-form').find('#btnSave').off("click").on('click', function (e) {
+        e.preventDefault();
+        create();
+    });
+    function create() {
+        if (ValidateForm(frmCreate)) {
+            return;
+        }
+        showLoading();
+        $.ajax({
+            url: "/nguyen-lieu" + "/create-or-update",
+            method: "POST",
+            data: {
+                TENNGUYENLIEU: frmCreate.find('#txtName').val(),
+                SOLUONG: frmCreate.find('#txtSL').val(),
+                DONVITINH: frmCreate.find('#listDonVi').val(),
+            }
+            , success: function (response) {
+                hideLoading()
+                if (response.result) {
+                    showAlert(response.message, 2)
+                    getDataNguyenLieu("");
+                    hideContentModal()
+                } else {
+                    showAlert(response.message)
+                }
+            }
+        });
+    }
+</script>

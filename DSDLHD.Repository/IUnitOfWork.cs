@@ -14,6 +14,7 @@ namespace VPDT.Repository
         
         public INHACUNGCAPRepository NHACUNGCAPRepository { get; }
         public IPHIEUNHAPRepository PHIEUNHAPRepository { get; }
+        public INGUYENLIEURepository NGUYENLIEURepository { get; }
        
         Task CreateTransaction();
         void Commit();
@@ -30,6 +31,7 @@ namespace VPDT.Repository
             _dbContext = dbContextFactory.GetContext();
             NHACUNGCAPRepository = new NHACUNGCAPRepository(_dbContext);
             PHIEUNHAPRepository = new PHIEUNHAPRepository(_dbContext);
+            NGUYENLIEURepository = new NGUYENLIEURepository(_dbContext);
             
 
 
@@ -37,6 +39,7 @@ namespace VPDT.Repository
     }
         public INHACUNGCAPRepository NHACUNGCAPRepository { get; }
         public IPHIEUNHAPRepository PHIEUNHAPRepository { get; }
+        public INGUYENLIEURepository NGUYENLIEURepository { get; }
 
        
 

@@ -24,7 +24,7 @@ namespace VPDT.DependencyInjection
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<INHACUNGCAPManager, NHACUNGCAPManager>();
             services.AddTransient<IPHIEUNHAPManager, PHIEUNHAPManager>();
-            
+            services.AddTransient<INGUYENLIEUManager, NGUYENLIEUManager>();
             
         }
     }
