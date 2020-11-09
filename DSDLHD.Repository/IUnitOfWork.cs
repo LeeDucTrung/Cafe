@@ -15,6 +15,7 @@ namespace VPDT.Repository
         public INHACUNGCAPRepository NHACUNGCAPRepository { get; }
         public IPHIEUNHAPRepository PHIEUNHAPRepository { get; }
         public INGUYENLIEURepository NGUYENLIEURepository { get; }
+        public ICHITIETPHIEUNHAPRepository CHITIETPHIEUNHAPRepository { get; }
        
         Task CreateTransaction();
         void Commit();
@@ -32,6 +33,7 @@ namespace VPDT.Repository
             NHACUNGCAPRepository = new NHACUNGCAPRepository(_dbContext);
             PHIEUNHAPRepository = new PHIEUNHAPRepository(_dbContext);
             NGUYENLIEURepository = new NGUYENLIEURepository(_dbContext);
+            CHITIETPHIEUNHAPRepository = new CHITIETPHIEUNHAPRepository(_dbContext);
             
 
 
@@ -40,6 +42,7 @@ namespace VPDT.Repository
         public INHACUNGCAPRepository NHACUNGCAPRepository { get; }
         public IPHIEUNHAPRepository PHIEUNHAPRepository { get; }
         public INGUYENLIEURepository NGUYENLIEURepository { get; }
+        public ICHITIETPHIEUNHAPRepository CHITIETPHIEUNHAPRepository { get; }
 
        
 

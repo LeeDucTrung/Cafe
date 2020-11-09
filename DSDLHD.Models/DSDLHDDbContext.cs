@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CAFE.Models;
+using Microsoft.EntityFrameworkCore;
 
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace VPDT.Models
         public DbSet<NHACUNGCAP> TBL_Chuc_Vu { get; set; }
         public DbSet<PHIEUNHAP> PHIEUNHAP { get; set; }
         public DbSet<NGUYENLIEU> NGUYENLIEU { get; set; }
+        public DbSet<CHITIETPHIEUNHAP> CHITIETPHIEUNHAP { get; set; }
        
     }
 }
