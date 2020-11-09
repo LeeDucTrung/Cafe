@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "ThongTinPhieuNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var idPhieuNhap = ViewData["idPhieuNhap"];
+    <input type="hidden" value="@idPhieuNhap" id="idPhieuNhap"/>
+}
+<div class="row">
+    <div class="col-lg-12" id="frmFilter">
+        <div class="card">
+            <div class="card-header border-0" style="height:60px">
+                <div class="row align-items-center my-auto" id="frmFilter">
+                    <div class="col-lg-6">
+                        <div class="form-group" style="float:left">
+                            <button id="btnCreate" class=" btn btn-success btn-sm">
+                                <i class="fas fa-plus mr-2" aria-hidden="true"></i>Thêm mới
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <strong>Thông tin chi tiết phiếu nhập</strong>
+            <div id="dtTable">
+            </div>
+        </div>
+    </div>
+</div>
+<button class=""><a href="/phieu-nhap/danh-sach"><< Quay về danh sách phiếu nhập</a></button>
+<script src="~/js/ThongTinPhieuNhap/index.js"></script>

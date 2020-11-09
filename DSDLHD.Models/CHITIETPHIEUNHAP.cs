@@ -15,5 +15,7 @@ namespace CAFE.Models
         public int NGUYENLIEUID { get; set; }
         public int SOLUONG { get; set; }
         public int DONGIA { get; set; }
+        [NotMapped]
+        public string NGUYENLIEUNAME { get; set; }
     }
 }

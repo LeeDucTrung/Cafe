@@ -18,6 +18,7 @@ namespace VPDT.Manager
         Task Update(NGUYENLIEU inputModel);
         Task<List<NGUYENLIEU>> Get_list(string name, int pageSize, int pageNumber);
         Task<NGUYENLIEU> FindById(int id);
+        Task<List<NGUYENLIEU>> Look_up();
     }
     public class NGUYENLIEUManager : INGUYENLIEUManager
     {
@@ -71,6 +72,10 @@ namespace VPDT.Manager
         public async Task<NGUYENLIEU> FindById(int id)
         {
             return await _unitOfWork.NGUYENLIEURepository.Get(x => x.ID == id);
+        }
+        public async Task<List<NGUYENLIEU>> Look_up()
+        {
+            return (await _unitOfWork.NGUYENLIEURepository.GetAll()).ToList();
         }
     }
 

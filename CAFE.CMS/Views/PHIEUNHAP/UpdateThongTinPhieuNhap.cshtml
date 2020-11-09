@@ -1,0 +1,85 @@
+﻿@model CAFE.Models.CHITIETPHIEUNHAP
+<div id="frmupdate" class="form-horizontal">
+    <input type="hidden" value="@Model.NGUYENLIEUID" id="nguyenLieuId" />
+    <input type="hidden" value="@Model.ID" id="idThongTinPhieu" />
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-4" required>Chọn Nguyên liệu</label>
+            <div class="col-sm-7">
+                <select required id="listNguyenLieu" class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4" required>Chọn số lượng</label>
+            <div class="col-sm-7">
+                <input type="number" id="txtSl" placeholder="Số lượng" class="form-control" value="@Model.SOLUONG" required/>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4" required>Đơn giá</label>
+            <div class="col-sm-7">
+                <input type="number" id="txtdongia" placeholder="Đơn giá" class="form-control" value="@Model.DONGIA" required/>
+            </div>
+        </div>
+        <br />
+    </div>
+
+</div>
+<script>
+    var frmupdate = $('#frmupdate');
+    $(document).ready(function () {
+        addRequired(frmupdate);
+        getlistNguyenLieu();
+    });
+    $('#modal-form').find('.modal-dialog').addClass("modal-lg")
+    $('#modal-form').find('#btnSave').off("click").on('click', function (e) {
+        e.preventDefault();
+        update();
+    });
+    function getlistNguyenLieu() {
+        var listNguyenLieu = $("#frmupdate").find("#listNguyenLieu");
+        var nguyenLieuId = frmupdate.find('#nguyenLieuId').val();
+        listNguyenLieu.select2();
+        $.ajax({
+            url: "/phieu-nhap" + "/get-nguyen-lieu",
+            method: "GET",
+            success: function (response) {
+                $.each(response.data, function (i, itemMenu) {
+                    if (i >= 0) {
+                        var newOption = new Option(itemMenu.title, itemMenu.value);
+                        listNguyenLieu.append(newOption);
+                    }
+                })
+                listNguyenLieu.val(nguyenLieuId).trigger('change');
+            }
+        })
+    }
+    function update() {
+        if (ValidateForm(frmupdate)) {
+            return;
+        }
+        showLoading();
+        $.ajax({
+            url: "/phieu-nhap"+ "/create-or-update-thong-tin",
+            method: "POST",
+            data: {
+                ID: $('#idThongTinPhieu').val(),
+                PHIEUNHAPID: $('#idPhieuNhap').val(),
+                NGUYENLIEUID: frmupdate.find('#listNguyenLieu').val(),
+                SOLUONG: frmupdate.find('#txtSl').val(),
+                DONGIA: frmupdate.find('#txtdongia').val()
+            }
+            , success: function (response) {
+                hideLoading()
+                if (response.result) {
+                    showAlert(response.message, 2)
+                    getDataThongTinPhieuNhap($('#idPhieuNhap').val())
+                    hideContentModal()
+                } else {
+                    showAlert(response.message)
+                }
+            }
+        });
+    }
+</script>

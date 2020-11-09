@@ -39,12 +39,12 @@ namespace CAFE.CMS.Controllers
                 if (inputModel.ID == 0)
                 {
                     await HttpHelper.PostData<NHACUNGCAP>(inputModel, $"{_domain}/api/nha-cung-cap/create");
-                    return Json(new { Result = true, Message = "Thêm mới dữ liệu thành công" });
+                    return Json(new { Result = true, Message = "Thêm mới nhà cung cấp thành công" });
                 }
                 else
                 {
                     await HttpHelper.PostData<NHACUNGCAP>(inputModel, $"{_domain}/api/nha-cung-cap/update");
-                    return Json(new { Result = true, Message = "Cập nhật dữ liệu thành công" });
+                    return Json(new { Result = true, Message = "Cập nhật nhà cung cấp thành công" });
                 }
             }
             catch (Exception ex)

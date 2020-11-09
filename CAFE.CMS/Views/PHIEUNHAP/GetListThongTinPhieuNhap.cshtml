@@ -1,0 +1,34 @@
+﻿@model List<CAFE.Models.CHITIETPHIEUNHAP>
+
+<table style="width:100%;height:100%;" id="tblDisplay" class=" table table-bordered table-hover table-striped">
+    <thead>
+        <tr style="text-align:center">
+            <th style="width:10%">STT</th>
+            <th style="width:50%">Nguyên liệu</th>
+            <th style="width:20%">Đơn giá</th>
+            <th style="width:10%">số lượng</th>
+            <th style="width:10%">Tác vụ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            for (int i = 0; i < Model.Count; i++)
+            {
+                var item = Model[i];
+                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+                var DONGIA = String.Format(culture, "{0:N0}", item.DONGIA);
+                <tr>
+                    <td style="text-align:center">@(i+1)</td>
+                    <td style="text-align:center"><a onclick="goToThongTin(@item.ID)">@item.NGUYENLIEUNAME</a></td>
+                    <td style="text-align:left">@DONGIA VND</td>
+                    <td style="text-align:left">@item.SOLUONG</td>
+                    <td style="text-align:center">
+                        <a href="javascript:;" onclick="openUpdateThongTinNguyenLieu(@item.ID)" data-toggle="tooltip" title="Cập nhập dữ liệu"><i class="fas fa-edit"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+<script src="~/js/ThongTinPhieuNhap/getList.js"></script>

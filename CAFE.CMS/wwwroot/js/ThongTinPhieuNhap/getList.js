@@ -33,12 +33,12 @@ function setDataTable() {
         }
     });
 }
-function openUpdate(id) {
+function openUpdateThongTinNguyenLieu(id) {
     $.ajax({
-        url: "/phieu-nhap" + "/update?id=" + id,
+        url: "/phieu-nhap" + "/update-thong-tin-phieu-nhap?id=" + id,
         method: "Get",
         success: function (response) {
-            showContentModal(response, "Cập nhập phiếu nhập")
+            showContentModal(response, "Cập nhập chi tiết phiếu nhập")
         }
     });
 }

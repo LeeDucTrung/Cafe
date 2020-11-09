@@ -75,6 +75,19 @@ namespace VPDT.API.Controllers
                 return StatusCode(400,ex);
             }
         }
+        [HttpGet("look-up-nguyen-lieu")]
+        public async Task<IActionResult> LookUp()
+        {
+            try
+            {
+                var data = await _manager.Look_up();
+                return Ok(data.Select(x => new { Value = x.ID, Title = x.TENNGUYENLIEU }));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
     }
 }

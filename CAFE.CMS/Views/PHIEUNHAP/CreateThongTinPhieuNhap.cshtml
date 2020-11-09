@@ -1,39 +1,50 @@
 ﻿<div id="frmCreate" class="form-horizontal">
     <div class="form-group">
         <div class="row">
-            <label class="col-sm-4" required>Chọn nhà cung cấp</label>
+            <label class="col-sm-4" required>Chọn Nguyên liệu</label>
             <div class="col-sm-7">
-                <select required id="listNhaCungCap" class="form-control">
+                <select required id="listNguyenLieu" class="form-control">
                 </select>
             </div>
         </div>
+        <div class="row">
+            <label class="col-sm-4" required>Chọn số lượng</label>
+            <div class="col-sm-7">
+                <input type="number" id="txtSl" placeholder="Số lượng" class="form-control" required/>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4" required>Đơn giá</label>
+            <div class="col-sm-7">
+                <input type="number" id="txtdongia" placeholder="Đơn giá" class="form-control" required />
+            </div>
+        </div>
         <br />
-        
     </div>
-    
+
 </div>
 <script>
     var frmCreate = $('#frmCreate');
     $(document).ready(function () {
         addRequired(frmCreate);
-        getListNhaCungCap();
+        getlistNguyenLieu();
     });
     $('#modal-form').find('.modal-dialog').addClass("modal-lg")
     $('#modal-form').find('#btnSave').off("click").on('click', function (e) {
         e.preventDefault();
         create();
     });
-    function getListNhaCungCap() {
-        var listNhaCungCap = $("#frmCreate").find("#listNhaCungCap");
-        listNhaCungCap.select2();
+    function getlistNguyenLieu() {
+        var listNguyenLieu = $("#frmCreate").find("#listNguyenLieu");
+        listNguyenLieu.select2();
         $.ajax({
-            url: "/phieu-nhap" + "/get-nha-cung-cap",
+            url: "/phieu-nhap" + "/get-nguyen-lieu",
             method: "GET",
             success: function (response) {
                 $.each(response.data, function (i, itemMenu) {
                     if (i >= 0) {
                         var newOption = new Option(itemMenu.title, itemMenu.value);
-                        listNhaCungCap.append(newOption);
+                        listNguyenLieu.append(newOption);
                     }
                 })
             }
@@ -45,16 +56,19 @@
         }
         showLoading();
         $.ajax({
-            url: "/phieu-nhap"+ "/create-or-update",
+            url: "/phieu-nhap"+ "/create-or-update-thong-tin",
             method: "POST",
             data: {
-                NHACUNGCAPID: frmCreate.find('#listNhaCungCap').val()
+                PHIEUNHAPID: $('#idPhieuNhap').val(),
+                NGUYENLIEUID: frmCreate.find('#listNguyenLieu').val(),
+                SOLUONG: frmCreate.find('#txtSl').val(),
+                DONGIA: frmCreate.find('#txtdongia').val()
             }
             , success: function (response) {
                 hideLoading()
                 if (response.result) {
                     showAlert(response.message, 2)
-                    getDataPhieuNhap("");
+                    getDataThongTinPhieuNhap($('#idPhieuNhap').val())
                     hideContentModal()
                 } else {
                     showAlert(response.message)

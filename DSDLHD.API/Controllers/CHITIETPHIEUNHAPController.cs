@@ -32,6 +32,19 @@ namespace VPDT.API.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        [HttpGet("get-list-thong-tin-phieu-nhap")]
+        public async Task<IActionResult> GetListThongTinPhieuNhap(int id = 0, int pageSize = 10, int pageNumber = 0)
+        {
+            try
+            {
+                var data = await _manager.Get_list_Thong_Tin(id, pageSize, pageNumber);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         [HttpGet("find-by-id")]
         public async Task<IActionResult> FindById(int id)
         {

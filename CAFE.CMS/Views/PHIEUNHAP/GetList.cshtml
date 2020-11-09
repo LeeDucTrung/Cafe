@@ -20,7 +20,7 @@
                 var giaTien = String.Format(culture, "{0:N0}", item.TONGTIEN);
                 <tr>
                     <td style="text-align:center">@(i+1)</td>
-                    <td style="text-align:center">@item.NHACUNGCAPNAME</td>
+                    <td style="text-align:center"><a onclick="goToThongTin(@item.ID)" href="javascript:;">@item.NHACUNGCAPNAME</a></td>
                     <td style="text-align:left">@item.NGAYLAP</td>
                     <td style="text-align:left">@giaTien VND</td>
                     <td style="text-align:left">@item.NHANVIENID</td>

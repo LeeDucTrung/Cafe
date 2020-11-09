@@ -11,12 +11,6 @@
                 </select>
             </div>
         </div>
-        <div class="row">
-            <label class="col-sm-4" required>Tổng tiền</label>
-            <div class="col-sm-7">
-                <input type="text" required class="form-control" placeholder="Tổng tiền" id="tongtien" value="@Model.TONGTIEN" />
-            </div>
-        </div>
     </div>
 
 </div>
@@ -44,8 +38,9 @@
                         var newOption = new Option(itemMenu.title, itemMenu.value);
                         listNhaCungCap.append(newOption);
                     }
-                    frmUpdate.find('#listNhaCungCap').val(listNhaCungCapval).trigger('change');
+                    
                 })
+                frmUpdate.find('#listNhaCungCap').val(listNhaCungCapval).trigger('change');
             }
         })
     }
@@ -59,8 +54,7 @@
             method: "POST",
             data: {
                 ID: frmUpdate.find('#IDNhaCungCap').val(),
-                NHACUNGCAPID: frmUpdate.find('#listNhaCungCap').val(),
-                TONGTIEN: frmUpdate.find('#tongtien').val()
+                NHACUNGCAPID: frmUpdate.find('#listNhaCungCap').val()
             }
             , success: function (response) {
                 hideLoading()

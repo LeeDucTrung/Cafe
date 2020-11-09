@@ -18,6 +18,7 @@ namespace VPDT.Manager
         Task Create(CHITIETPHIEUNHAP inputModel);
         Task Update(CHITIETPHIEUNHAP inputModel);
         Task<List<CHITIETPHIEUNHAP>> Get_list(string name, int pageSize, int pageNumber);
+        Task<List<CHITIETPHIEUNHAP>> Get_list_Thong_Tin(int id, int pageSize, int pageNumber);
         Task<CHITIETPHIEUNHAP> FindById(int id);
     }
     public class CHITIETPHIEUNHAPManager : ICHITIETPHIEUNHAPManager
@@ -60,6 +61,24 @@ namespace VPDT.Manager
             {
                 List<CHITIETPHIEUNHAP> data;
                 data = (await _unitOfWork.CHITIETPHIEUNHAPRepository.GetAll()).ToList();
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<List<CHITIETPHIEUNHAP>> Get_list_Thong_Tin(int id, int pageSize, int pageNumber)
+        {
+            try
+            {
+                List<CHITIETPHIEUNHAP> data;
+                data = (await _unitOfWork.CHITIETPHIEUNHAPRepository.FindBy(x => x.PHIEUNHAPID == id)).ToList();
+                for (int i = 0; i < data.Count(); i++)
+                {
+                    var TENNGUYENLIEU = (await _unitOfWork.NGUYENLIEURepository.Get(x => x.ID == data[i].NGUYENLIEUID)).TENNGUYENLIEU;
+                    data[i].NGUYENLIEUNAME = TENNGUYENLIEU;
+                }
                 return data;
             }
             catch (Exception ex)
