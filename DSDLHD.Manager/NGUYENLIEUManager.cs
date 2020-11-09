@@ -19,6 +19,7 @@ namespace VPDT.Manager
         Task<List<NGUYENLIEU>> Get_list(string name, int pageSize, int pageNumber);
         Task<NGUYENLIEU> FindById(int id);
         Task<List<NGUYENLIEU>> Look_up();
+        Task<NGUYENLIEU> Find_By_Name(string ten);
     }
     public class NGUYENLIEUManager : INGUYENLIEUManager
     {
@@ -68,7 +69,10 @@ namespace VPDT.Manager
                 throw ex;
             }
         }
-
+        async Task<NGUYENLIEU> INGUYENLIEUManager.Find_By_Name(string ten)
+        {
+            return await _unitOfWork.NGUYENLIEURepository.Get(c => c.TENNGUYENLIEU.ToLower() == ten.Trim().ToLower());
+        }
         public async Task<NGUYENLIEU> FindById(int id)
         {
             return await _unitOfWork.NGUYENLIEURepository.Get(x => x.ID == id);

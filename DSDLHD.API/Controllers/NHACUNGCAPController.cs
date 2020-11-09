@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VPDT.Manager;
 using VPDT.Models;
+using VPDT.Utils;
 
 namespace VPDT.API.Controllers
 {
@@ -49,6 +50,11 @@ namespace VPDT.API.Controllers
         {
             try
             {
+                var exist = await _manager.Find_By_Name(inputModel.TENNHACUNGCAP);
+                if (exist != null)
+                {
+                    throw new Exception($"Nhà cung cấp { MessageConst.EXIST }");
+                }
                 await _manager.Create(inputModel);
                 return Ok(inputModel);
             }

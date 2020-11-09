@@ -19,6 +19,7 @@ namespace VPDT.Manager
         Task<List<NHACUNGCAP>> Get_list(string name, int pageSize, int pageNumber);
         Task<NHACUNGCAP> FindById(int id);
         Task<List<NHACUNGCAP>> Look_up();
+        Task<NHACUNGCAP> Find_By_Name(string ten);
     }
     public class NHACUNGCAPManager : INHACUNGCAPManager
     {
@@ -53,7 +54,11 @@ namespace VPDT.Manager
                 _unitOfWork.Rollback();
                 throw ex;
             }
-        } 
+        }
+        async Task<NHACUNGCAP> INHACUNGCAPManager.Find_By_Name(string ten)
+        {
+            return await _unitOfWork.NHACUNGCAPRepository.Get(c => c.TENNHACUNGCAP.ToLower() == ten.Trim().ToLower());
+        }
         public async Task<List<NHACUNGCAP>> Get_list(string name, int pageSize, int pageNumber)
         {
             try
